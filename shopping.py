@@ -26,8 +26,9 @@ def shopping_post():
         address = request.form['address']
         maxRange = request.form['maxRange']
         searchItem = request.form['searchItem']
-        
-        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem)
+        latitude = getLat(address)
+        longitude = getLong(address)
+        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem, latitude=latitude, longitude=longitude)
     else:
         return render_template('shopping2.html')
 
@@ -36,6 +37,7 @@ def getLocation(address):
     whereamI = location.geocode(address)
     return whereamI.address
 
+<<<<<<< HEAD
 def getRandomPrices():
     stores = ['Trader Joe\'s', 'MOM\'s Organic Market','ACME','Foodie\'s Market', 'Super Fresh', 'Whole Foods Market', 'Narbeth American Family Market', 'Giant', 'Spring Grocery Store', 'Swiss Farm Stores']
     base_price = random.randrange(1, 11)
@@ -45,6 +47,19 @@ def getRandomPrices():
           all_prices.append((price, stores[i]))
     all_prices.sort()
     return all_prices
+||||||| merged common ancestors
+
+=======
+def getLat(address):
+    location = Nominatim()
+    whereamI = location.geocode(address)
+    return whereamI.latitude
+
+def getLong(address):
+    location = Nominatim()
+    whereamI = location.geocode(address)
+    return whereamI.longitude
+>>>>>>> aaadd219bf822596edc9806336dd80fde2e85f91
 
 @app.route('/about.html')
 def about():
