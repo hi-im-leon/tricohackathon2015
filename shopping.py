@@ -1,4 +1,5 @@
 import sqlite3
+import random
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
@@ -34,7 +35,15 @@ def getLocation(address):
     whereamI = location.geocode(address)
     return whereamI.address
 
-
+def getRandomPrices():
+    stores = ['Trader Joe\'s', 'MOM\'s Organic Market','ACME','Foodie\'s Market', 'Super Fresh', 'Whole Foods Market', 'Narbeth American Family Market', 'Giant', 'Spring Grocery Store', 'Swiss Farm Stores']
+    base_price = random.randrange(1, 11)
+    all_prices = []
+    for i in range(10):
+          price = round(base_price + base_price * random.random()-.3, 2)
+          all_prices.append((price, stores[i]))
+    all_prices.sort()
+    return all_prices
 
 @app.route('/about.html')
 def about():
