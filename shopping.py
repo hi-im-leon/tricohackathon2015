@@ -2,6 +2,7 @@ import sqlite3
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
+from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -24,9 +25,16 @@ def shopping_post():
         address = request.form['address']
         maxRange = request.form['maxRange']
         searchItem = request.form['searchItem']
-        return render_template('shopping2.html', address=address, maxRange=maxRange, searchItem=searchItem)
+        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem)
     else:
         return render_template('shopping2.html')
+
+def getLocation(address):
+    location = Nominatim()
+    whereamI = location.geocode(address)
+    return whereamI.address
+
+
 
 @app.route('/about.html')
 def about():
