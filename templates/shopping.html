@@ -14,6 +14,15 @@
             function updateTextInput(val) {
             document.getElementById('maxRange').value=val + " mile(s)"; 
         }
+            function alertoncommand(){
+                x = document.getElementById("address").value;
+                if(x != null){
+                    alert(x);
+                }
+                else {
+                    alert("Hello!");
+                }
+            }
         </script>
     </head>
     
@@ -34,13 +43,30 @@
                 <div class="shoppingtext">
                 <h2>Shoppr</h2>
                 <p id="map">
+            <form action="shopping2.html" method="post">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input class="form-control" type="text" id="formGroupInputLarge" name = "address" placeholder="Input your location: " id="address" value="">
+                </div>
+                <div class="form-group">
+                    <label>Max Distance</label>
+                 <input type="range" name="rangeInput" min="0" max="5" step="0.1" onchange="updateTextInput(this.value);"><br>
+                    <input type="text" name="maxRange" id="maxRange" value=""><br><br>
+                    <label>Search Item</label>
+                        <input type="text" id="inputHelpBlock" class="form-control" name="searchItem" aria-describedby="helpBlock" value="">
+                        <span id="helpBlock" class="help-block"><em>ie. apples, flannel shirt, shampoo</em></span>
+                </div>
+            <!-- Post to '/post' -->
+            <button class="btn">Post Form!</button>
+          </form>
+<!--
                 Step 1. <br>
                 First, we need to start of by grabbing your location (Allow our website to look at your location): <br>
                 <button onclick="getLocation()" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Currently disabled" disabled>Try It</button><br>
-                    <form class="form-horizontal" method="get">
+                    <form class="form-horizontal" method="get" name="address">
                       <span class="form-group form-group-lg">
                         <span class="col-sm-10">
-                          <input class="form-control" type="text" id="formGroupInputLarge" name = "address" placeholder="Alternatively, you can input your location: " value="">
+                          <input class="form-control" type="text" id="formGroupInputLarge" name = "address" placeholder="Alternatively, you can input your location: " id="address" value="">
                         </span>
                       </span>
                     </form>
@@ -49,16 +75,17 @@
                 <p>
                 Step 2. <br>
                 Set the maximum distance that Shoppr should look to obtain results:<br>
-                <form oninput="amount.value=rangeInput.value" method="get">
+                <form oninput="amount.value=rangeInput.value" method="get" name="range">
                     <input type="range" name="rangeInput" min="0" max="5" step="0.1" onchange="updateTextInput(this.value);"><br>
                     <center><input type="text" name="maxRange" id="maxRange" value=""></center>
                 </form>
+                
                 
                 </p><br>
                 <p>
                 Step 3. <br>
                 What would you like to buy: 
-                <form method="get">
+                <form method="get" name="item">
                     <label class="sr-only" for="inputHelpBlock">Search bar</label>
                     <input type="text" id="inputHelpBlock" class="form-control" name="searchItem" aria-describedby="helpBlock" value="">
                     <span id="helpBlock" class="help-block"><em>ie. apples, flannel shirt, shampoo</em></span>
@@ -66,10 +93,12 @@
                 </p><br>
                 <p>
                 Step 4. <br>
-                Ready, set...<br>
-                <form action="shopping2.html" method="POST">
-                    <input class="btn btn-default" type="submit" value="Go!">
+                Ready, set...
+                <form method="POST">
+                    action="shopping2.html"
+                    <button class="btn btn-default" onclick="alertoncommand()">Go!</button>
                 </form>
+-->
                 </p><br><br>
                 </div>
         </section>
