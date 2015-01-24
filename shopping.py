@@ -26,6 +26,7 @@ def shopping_post():
         address = request.form['address']
         maxRange = request.form['maxRange']
         searchItem = request.form['searchItem']
+        
         return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem)
     else:
         return render_template('shopping2.html')

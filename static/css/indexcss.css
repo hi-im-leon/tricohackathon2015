@@ -73,14 +73,6 @@ div.hometext p, div.tutorialtext p, div.abouttext p  {
     opacity: 0.85;
 }
 
-div.shoppingtext p, div.shoppingtext2 p {
-    font-size: 24px;
-}
-
-div.shoppingtext2 p {
-    padding-top: 2.5%;
-}
-
 .hometext button a {
     text-decoration: none;
 }
@@ -108,7 +100,7 @@ About
 Shopping
 ***************************/
 
-.shoppingtext, .shoppingtext2 {
+.shoppingtext {
     background-color: white;
     padding-left: 5%;
     padding-right: 5%;
@@ -130,7 +122,15 @@ div.form-group form-group-lg {
     background-color: white;
 }
 
+div.shoppingtext p, div.shoppingtext2 p{
+    font-size: 24px;
+}
 
+div.shoppingtext2 p {
+    padding: 2.5%;
+    border: 2px solid black;
+    background-color: white;
+}
 
 
 /**************************
