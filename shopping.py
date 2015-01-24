@@ -25,8 +25,9 @@ def shopping_post():
         address = request.form['address']
         maxRange = request.form['maxRange']
         searchItem = request.form['searchItem']
-        
-        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem)
+        latitude = getLat(address)
+        longitude = getLong(address)
+        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem, latitude=latitude, longitude=longitude)
     else:
         return render_template('shopping2.html')
 
@@ -35,7 +36,15 @@ def getLocation(address):
     whereamI = location.geocode(address)
     return whereamI.address
 
+def getLat(address):
+    location = Nominatim()
+    whereamI = location.geocode(address)
+    return whereamI.latitude
 
+def getLong(address):
+    location = Nominatim()
+    whereamI = location.geocode(address)
+    return whereamI.longitude
 
 @app.route('/about.html')
 def about():
