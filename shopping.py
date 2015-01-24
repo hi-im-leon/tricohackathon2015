@@ -28,7 +28,7 @@ def shopping_post():
         searchItem = request.form['searchItem']
         latitude = getLat(address)
         longitude = getLong(address)
-        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem, latitude=latitude, longitude=longitude)
+        return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem, latitude=latitude, longitude=longitude, list_of_store = getRandomPrices())
     else:
         return render_template('shopping2.html')
 
