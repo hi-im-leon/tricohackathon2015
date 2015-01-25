@@ -48,7 +48,7 @@ def getRandomPrices(dictionary):
     for i in range(len(dictionary)):
         stores2.append(dictionary[i]['name'])
     print(stores2)
-    base_price = random.randrange(1, 4)
+    base_price = random.randrange(1, 3)
     all_prices = []
     
     for i in range(len(stores2)):

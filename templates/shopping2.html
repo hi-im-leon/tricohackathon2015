@@ -46,9 +46,12 @@
                     <li><a href="tutorial.html">Tutorial</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <p class="navbar-text">Shoppr: The Premier Shopping Experience</p>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" id="shoppingcart"></span><p>My Cart</p>
+                    <div id="cartcost" style="float:right;margin-right:10%;">
+                    <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart" style="margin-top:8px;margin-left:50px;">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><p>My Cart</p>
                     </button>
+                    <p class="navbar-text">Total cost: $0.00</p>
+                    </div>
                 </ul>
         </header>
         <section>
@@ -63,6 +66,7 @@
                             <tr>
                                 <th>Store</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
                                 <th>Buy</th>
                             </tr>
                         </thead>
@@ -71,6 +75,20 @@
                         <tr>
                             <td>{{dict.store|e}}</td>
                             <td>${{dict.price|e}}</td>
+                            <td>
+                            <select name="quantity">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            </td>
                             <td><input type="button" id = "purchase" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Item will be added to the cart" value="Purchase"></td>
                         </tr>
                     {% endfor %}
@@ -110,10 +128,9 @@
       $('[data-toggle="tooltip"]').tooltip()
     });
     $( "#purchase" ).click(function() {
-        $(this).val("In Cart!");
+        $(this).val("In Cart");
         $(this).css('background-color','gray');
         $(this).css('border','1px solid gray');
-        $(this).prop('title', 'Added to the cart!');
     });
     </script>
     </body>
