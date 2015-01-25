@@ -74,7 +74,7 @@ section h2{
 
 }
 
-div.hometext p, div.tutorialtext p, div.abouttext p  {
+div.hometext p, div.tutorialtext #tutorialguide, div.abouttext p  {
     background-color: white;
     padding: 25px;
     border-radius: 10px;
@@ -179,10 +179,6 @@ div.shoppingtext2 #purchase {
 				0 0 1px 1px rgba(255,255,255,0.8),
 				0 0 0 6px rgba(0,0,0,0.06),
 				0 0 0 3px rgba(0,0,0,0.1);
-}
-
-.shopping button#shoppingcart {
-    margin-top: 15px;
 }
 
 /**************************

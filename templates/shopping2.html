@@ -34,6 +34,7 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
             </script>
+        <title>Shoppr: Shopping</title>
     </head>
     
     <!-- Body -->
@@ -47,17 +48,18 @@
                     <li><a href="about.html">About Us</a></li>
                     <p class="navbar-text">Shoppr: The Premier Shopping Experience</p>
                     <div id="cartcost" style="float:right;margin-right:10%;">
-                    <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart" style="margin-top:8px;margin-left:50px;">
+                    <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart" style="margin-top:8px;margin-left:55px;">
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><p>My Cart</p>
                     </button>
-                    <p class="navbar-text">Total cost: $0.00</p>
+                    <p class="navbar-text">Total cost: ${{total|default("0.00")}}</p>
+                        </button>
                     </div>
                 </ul>
         </header>
         <section>
             <div class="container">
                 <div class="shoppingtext2">
-                    <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found <a href="#data">({{number}})</a> match(es).
+                    <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found <a href="#data">({{number}})</a> match(es). {{quantity}}
                     </p>
                     <center><div id="googleMap" style="width:500px; height:380px; border:2px solid black;"></div></center><br>
                     <span id="data">
