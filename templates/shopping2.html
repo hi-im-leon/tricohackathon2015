@@ -54,8 +54,29 @@
                     <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found (number) match(es).
                     </p>
                     <center><div id="googleMap" style="width:500px; height:380px; border:2px solid black;"></div></center><br>
-                    <p></p>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Store</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+
+                    {% for dict in list_of_store %}
+                        <tr>
+                            <td>{{dict.store|e}}</td>
+                            <td>{{dict.price|e}}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
+
                 </div>
         </section>
         <footer>

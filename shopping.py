@@ -41,11 +41,15 @@ def getRandomPrices():
     stores = ['Trader Joe\'s', 'MOM\'s Organic Market','ACME','Foodie\'s Market', 'Super Fresh', 'Whole Foods Market', 'Narbeth American Family Market', 'Giant', 'Spring Grocery Store', 'Swiss Farm Stores']
     base_price = random.randrange(1, 11)
     all_prices = []
+    
     for i in range(10):
-          price = round(base_price + base_price * random.random()-.3, 2)
-          all_prices.append((price, stores[i]))
-    all_prices.sort()
-    return all_prices
+        dict_price = {}
+        price = round(base_price + base_price * random.random()-.3, 2)
+        dict_price["store"] = stores[i]
+        dict_price["price"] = price  
+        all_prices.append(dict_price)
+        sorted_prices = sorted(all_prices, key=lambda k: k['price'])
+    return sorted_prices
 
 def getLat(address):
     location = Nominatim()
