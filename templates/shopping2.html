@@ -46,14 +46,18 @@
                     <li><a href="tutorial.html">Tutorial</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <p class="navbar-text">Shoppr: The Premier Shopping Experience</p>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" id="shoppingcart"></span><p>My Cart</p>
+                    </button>
                 </ul>
         </header>
         <section>
             <div class="container">
                 <div class="shoppingtext2">
-                    <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found ({{number}}) match(es).
+                    <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found <a href="#data">({{number}})</a> match(es).
                     </p>
                     <center><div id="googleMap" style="width:500px; height:380px; border:2px solid black;"></div></center><br>
+                    <span id="data">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -67,10 +71,11 @@
                         <tr>
                             <td>{{dict.store|e}}</td>
                             <td>${{dict.price|e}}</td>
-                            <td><button type="button" class="btn btn-success">Purchase</button></td>
+                            <td><input type="button" id = "purchase" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Item will be added to the cart" value="Purchase"></td>
                         </tr>
                     {% endfor %}
                     </table>
+                    </span>
 
                     <br>
                     <br>
@@ -81,11 +86,36 @@
 
                 </div>
         </section>
-        <footer>
+        <div id="footer">
             <h4>&copy; Shoppr 2015. All rights reserved.</h4>
-        </footer>
+        </div>n
     </div>   
     </nav>
+    <script>
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
+        }
+      });
+    });
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+    $( "#purchase" ).click(function() {
+        $(this).val("In Cart!");
+        $(this).css('background-color','gray');
+        $(this).css('border','1px solid gray');
+        $(this).prop('title', 'Added to the cart!');
+    });
+    </script>
     </body>
     
 </html>

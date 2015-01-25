@@ -33,23 +33,9 @@ def shopping_post():
         latitude = getLat(address)
         longitude = getLong(address)
         return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem, latitude=latitude, longitude=longitude, 
-            dictionary=getStores(address,maxRange), number=len(getStores(address,maxRange)), list_of_store = getRandomPrices())
+            dictionary=getStores(address,maxRange), number=len(getStores(address,maxRange)), list_of_store = getRandomPrices(getStores(address,maxRange)))
     else:
         return render_template('shopping2.html')
-
-def getRandomPrices():
-    stores = ['Trader Joe\'s', 'MOM\'s Organic Market','ACME','Foodie\'s Market', 'Super Fresh', 'Whole Foods Market', 'Narbeth American Family Market', 'Giant', 'Spring Grocery Store', 'Swiss Farm Stores']
-    base_price = random.randrange(1, 11)
-    all_prices = []
-    
-    for i in range(10):
-        dict_price = {}
-        price = round(base_price + base_price * random.random()-.3, 2)
-        dict_price["store"] = stores[i]
-        dict_price["price"] = price  
-        all_prices.append(dict_price)
-        sorted_prices = sorted(all_prices, key=lambda k: k['price'])
-    return sorted_prices
 
 
 def getLocation(address):
@@ -57,15 +43,18 @@ def getLocation(address):
     whereamI = location.geocode(address)
     return whereamI.address
 
-def getRandomPrices():
-    stores = ['Trader Joe\'s', 'MOM\'s Organic Market','ACME','Foodie\'s Market', 'Super Fresh', 'Whole Foods Market', 'Narbeth American Family Market', 'Giant', 'Spring Grocery Store', 'Swiss Farm Stores']
-    base_price = random.randrange(1, 11)
+def getRandomPrices(dictionary):
+    stores2 = []
+    for i in range(len(dictionary)):
+        stores2.append(dictionary[i]['name'])
+    print(stores2)
+    base_price = random.randrange(1, 4)
     all_prices = []
     
-    for i in range(10):
+    for i in range(len(stores2)):
         dict_price = {}
         price = round(base_price + base_price * random.random()-.3, 2)
-        dict_price["store"] = stores[i]
+        dict_price["store"] = stores2[i]
         dict_price["price"] = price  
         all_prices.append(dict_price)
         sorted_prices = sorted(all_prices, key=lambda k: k['price'])
@@ -93,6 +82,14 @@ def getStores(address, maxRange):
         storeDictionary.append(newBusiness)
     return storeDictionary
 
+# def latlongList(dictionary):
+#     stores1 = []
+#     for i in range(len(dictionary)):
+#         a = getLat(dictionary[i]["address"])
+#         b = getLat(dictionary[i]["address"])
+#         stores1.append(a,b)
+#         print(stores1[i])
+#     return stores1
 
 @app.route('/about.html')
 def about():

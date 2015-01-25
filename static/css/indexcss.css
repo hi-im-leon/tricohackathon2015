@@ -54,6 +54,21 @@ nav a {
     display: inline-block;
 }
 
+
+nav button {
+    margin: 0;
+    padding: 0;
+    width: 5%;
+    height: 5%;
+    position: fixed;
+}
+
+nav p#shoppingcart {
+    padding: 0;
+    margin: 0;
+    margin-bottom: -10px;
+}
+
 /**************************
 Container
 ***************************/
@@ -107,6 +122,10 @@ Shopping
     height: 100%;
 }
 
+.shoppingtext #formGroupInputLarge, .shoppingtext #inputHelpBlock, .shoppingtext #range {
+    width: 50%;
+}
+
 #mapholder {
     display: block;
     margin: 0 auto;
@@ -118,7 +137,7 @@ Shopping
 }
 
 div.shoppingtext #range {
-    width: 50%;
+    width: 25%;
 }
 
 div.form-group form-group-lg {
@@ -157,7 +176,7 @@ Tutorial
 /**************************
 Footer
 ***************************/
-footer {
+#footer {
 	width:100%;
 	height:35px;
 	position:fixed;

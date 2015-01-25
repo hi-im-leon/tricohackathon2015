@@ -36,6 +36,9 @@
                     <li><a href="tutorial.html">Tutorial</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <p class="navbar-text">Shoppr: The Premier Shopping Experience</p>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" id="shoppingcart"></span><p id="shoppingcart">My Cart</p>
+                    </button>
                 </ul>
         </header>
         <section>
@@ -46,27 +49,32 @@
             <form action="shopping2.html" method="post">
                 <div class="form-group">
                   <label>Address</label>
-                  <input class="form-control" type="text" id="formGroupInputLarge" name = "address" placeholder="Input your location: " id="address" value="">
+                  <input class="form-control" type="text" id="formGroupInputLarge" name = "address" placeholder="Enter your location" id="address" value="">
                 </div>
                 <div class="form-group">
                     <label>Max Distance</label>
-                 <input type="range" name="rangeInput" min="0" max="5" step="0.1" onchange="updateTextInput(this.value);"><br>
+                 <input type="range" name="rangeInput" min="0" max="5" step="0.1" onchange="updateTextInput(this.value);" id="range"><br>
                     <input type="text" name="maxRange" id="maxRange" value=""><br><br>
                     <label>Search Item</label>
                         <input type="text" id="inputHelpBlock" class="form-control" name="searchItem" aria-describedby="helpBlock" value="">
                         <span id="helpBlock" class="help-block"><em>ie. apples, flannel shirt, shampoo.</em></span>
                 </div>
             <!-- Post to '/post' -->
-            <button class="btn">Post Form!</button>
+            <button class="btn">Search</button>
           </form>
                 </p><br><br>
                 </div>
         </section>
-        <footer>
+        <div id="footer">
             <h4>&copy; Shoppr 2015. All rights reserved.</h4>
-        </footer>
+        </div>
     </div>   
     </nav>
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
     </body>
     
 </html>
