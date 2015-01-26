@@ -3,10 +3,11 @@ import random
 from contextlib import closing
 import random
 from flask import Flask, request, session, g, redirect, url_for, \
-     abort, render_template, flash
+     abort, render_template, flash, jsonify
 from geopy.geocoders import Nominatim
 from yelpapi import YelpAPI
 import argparse
+import json
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -32,11 +33,13 @@ def shopping_post():
         searchItem = request.form['searchItem']
         latitude = getLat(address)
         longitude = getLong(address)
+        dictionary = getStores(address, maxRange)
+        list_of_store = getRandomPrices(dictionary)
+        storeList = json.dumps(list_of_store)
         return render_template('shopping2.html', address=getLocation(address), maxRange=maxRange, searchItem=searchItem, latitude=latitude, longitude=longitude, 
-            dictionary=getStores(address,maxRange), number=len(getStores(address,maxRange)), list_of_store = getRandomPrices(getStores(address,maxRange)))
+            dictionary=dictionary, number=len(dictionary), list_of_store = list_of_store, storeList=storeList)
     else:
         return render_template('shopping2.html')
-
 
 def getLocation(address):
     location = Nominatim()
@@ -47,7 +50,6 @@ def getRandomPrices(dictionary):
     stores2 = []
     for i in range(len(dictionary)):
         stores2.append(dictionary[i]['name'])
-    print(stores2)
     base_price = random.randrange(1, 3)
     all_prices = []
     
@@ -76,9 +78,7 @@ def getStores(address, maxRange):
     for business in getSearches["businesses"]:
         newBusiness = {}
         newBusiness["name"] = business["name"]
-        print(newBusiness["name"])
         newBusiness["address"] = ', '.join(business['location']['display_address'])
-        print(newBusiness["address"])
         storeDictionary.append(newBusiness)
     return storeDictionary
 

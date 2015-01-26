@@ -12,6 +12,7 @@
         <script src="../static/js/bootstrap.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js"></script>
         <script>
+            
         var myCenter=new google.maps.LatLng({{latitude}}, {{longitude}});
 
         function initialize()
@@ -33,6 +34,8 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
+            
+        
             </script>
         <title>Shoppr: Shopping</title>
     </head>
@@ -51,7 +54,7 @@
                     <button type="button" class="btn btn-default" aria-label="Left Align" id="shoppingcart" title="Cart" style="margin-top:8px;margin-left:55px;">
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><p>My Cart</p>
                     </button>
-                    <p class="navbar-text">Total cost: ${{total|default("0.00")}}</p>
+                        <p class="navbar-text">Total cost: $<span id="basketTotal">0.00</span></p>
                         </button>
                     </div>
                 </ul>
@@ -59,7 +62,7 @@
         <section>
             <div class="container">
                 <div class="shoppingtext2">
-                    <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found <a href="#data">({{number}})</a> match(es). {{quantity}}
+                    <p>Your approximate address: {{ address }} <br> Max range: {{maxRange}} <br> Your search item: {{searchItem}}. <br> Shoppr has found <a href="#data">{{number}}</a> match(es).
                     </p>
                     <center><div id="googleMap" style="width:500px; height:380px; border:2px solid black;"></div></center><br>
                     <span id="data">
@@ -78,17 +81,19 @@
                             <td>{{dict.store|e}}</td>
                             <td>${{dict.price|e}}</td>
                             <td>
-                            <select name="quantity">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
+                            <select name="basket_quantity" id="basket_quantity">
+                                <option value="0" selected>0</option>
+                                 <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                
+                                
                             </select>
                             </td>
                             <td><input type="button" id = "purchase" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Item will be added to the cart" value="Purchase"></td>
@@ -133,6 +138,8 @@
         $(this).val("In Cart");
         $(this).css('background-color','gray');
         $(this).css('border','1px solid gray');
+        var quantity = document.getElementById("basket_quantity");
+        var chosen = quantity.options[quantity.selectedIndex].value;
     });
     </script>
     </body>
